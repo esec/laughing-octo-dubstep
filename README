@@ -8,3 +8,9 @@ Useless crawler requires wget
 Not known
 
 But tested with wget 1.14...
+
+# Usage
+Put every links into a new file named 'in' and execute the script
+
+# Advanced usage
+You are free to modify the script, right ;)
