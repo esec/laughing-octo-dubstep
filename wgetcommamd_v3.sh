@@ -1,0 +1,11 @@
+wget \
+--restrict-file-names=windows \ #试过了linux，但还是会出现特殊字符写不进盘的问题。。。
+--user-agent "Mozilla/5.0 (Linux; Android 4.0.4; GT-I9308 Build/IMM76D) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36" \ #改浏览器标识
+--execute robots=off \ #开启无敌模式
+-H \ #允许跨域名下载
+-p \ #下载页面中的图片等一堆东西
+-kK \ #本地化，之前这个脚本是用来mirror的因此遗留了这个选项
+-w 1 \ #个人感觉加不加无所谓。。。
+--waitretry 10 \ #话说这个好像略多余。。。
+-o log \ #懒人必备- -
+-i in \ #读取链接列表
