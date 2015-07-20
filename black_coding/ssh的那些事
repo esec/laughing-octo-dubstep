@@ -1,0 +1,12 @@
+coding@coding:~/workspace$ df -h                                                                                           
+Filesystem          Size  Used Avail Use% Mounted on                                                                       
+rootfs              493G  233G  235G  50% /                                                                                
+none                493G  233G  235G  50% /                                                                                
+tmpfs               7.9G     0  7.9G   0% /dev                                                                             
+shm                  64M     0   64M   0% /dev/shm                                                                         
+/dev/nbd_ws_ulwqdd  976M  1.7M  908M   1% /home/coding/.ssh                                                                
+/dev/vdb            493G  233G  235G  50% /etc/hosts                                                                       
+tmpfs               7.9G     0  7.9G   0% /proc/kcore                                                                      
+tmpfs               7.9G     0  7.9G   0% /proc/latency_stats                                                              
+tmpfs               7.9G     0  7.9G   0% /proc/timer_stats                                                                
+coding@coding:~/workspace$ 
