@@ -1,0 +1,14 @@
+var host_block = [
+        'gov.cn',
+        'dnf500.com',
+        'gxnews.com.cn',
+        'aaaaaaagxnews.com.cn',
+        '114so.cn',
+        'taobao.com',
+        'bbs.1lou.com',
+        'uip.hq.ctc.com',
+        'www.52pojie.cn',
+        'www.dfcchina.com',
+        's.1688.com'
+];
+
