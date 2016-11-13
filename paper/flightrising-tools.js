@@ -22,11 +22,24 @@ a()/* 为使浏览器不返回true，所有流程都会塞进方法里 */
 
 === 自动点bonding
 
-javascript:a=function(){x=document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;if(x){x()};window.open(document.getElementById("dragbuttons").getElementsByTagName("a")[1].href);window.close()};a()
+javascript:a=function(){x=document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;if(x){x();if(!window.z){window.z=1;exit}};window.open(document.getElementById("dragbuttons").getElementsByTagName("a")[1].href);window.close()};a()
 
 x = document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;
-if(x){x()};
 // loginbar的同名class有一大堆，估计将来的整站重写会改掉这个入口
+
+if(x){
+	x();
+	// alert("Please check the progress");
+	// 实验特性: 加个alert 
+	// 已废弃,因为alert之后整个页面都停住了
+	
+	if(!window.z){
+		window.z = 1;
+		exit;
+		// 第一次过去新增一个 window.z
+		// 第二次过去直接跑后面的逻辑开新窗口
+	}
+};
 // *** 这边是直接执行了绑定在bond按钮上的onclick ***
 // 顺带如果hoard那边的具体事件绑定也能找到的话那么自动归类的操作也可以全自动化了=w=
 // update: 执行前加个判断，已经bond过的会自动跳过了
