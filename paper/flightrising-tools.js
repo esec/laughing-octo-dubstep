@@ -1,5 +1,5 @@
-javascript:a=function(){for(a=0;a<28;a++){x=document.getElementsByName("v"+a)[0].options.length;if(x>2){document.getElementsByName("v"+a)[0].options[x-1].selected=false;document.getElementsByName("v"+a)[0].options[1].selected=true;}}checkAll(invent);document.getElementById("tovault").click()};a()
-javascript:a=function(){for(a=0;a<28;a++){document.getElementsByName("v"+a)[0].options[document.getElementsByName("v"+a)[0].options.length-1].selected=false;document.getElementsByName("v"+a)[0].options[0].selected=true;}checkAll(invent);document.getElementById("tovault").click()};a()
+javascript:a=function(){for(a=0;a<28;a++){x=document.getElementsByName("v"+a)[0].options.length;if(x>2){document.getElementsByName("v"+a)[0].options[x-1].selected=false;document.getElementsByName("v"+a)[0].options[1].selected=true;}}checkAll(invent)};a()
+javascript:a=function(){for(a=0;a<28;a++){document.getElementsByName("v"+a)[0].options[document.getElementsByName("v"+a)[0].options.length-1].selected=false;document.getElementsByName("v"+a)[0].options[0].selected=true;}checkAll(invent)};a()
 // 第二行是另一个删掉了部分判定逻辑只改数量大于2的版本，该版本的出现原因我想关于这个文件的上一次commit信息里有写.
 
 /*
@@ -17,8 +17,9 @@ javascript: a = function() {
 			document.getElementsByName("v" + a)[0].options[1].selected = true;/* 选中2 */
 		}
 	}
-	checkAll(invent); // 扔前面会出bug?
-	document.getElementById("tovault").click(); /* 新功能： 自动回收 */
+	// checkAll(invent); // 扔前面会出bug?
+	// 已查明，官方写的这个函数有bug，当物件没满屏会抛错，也许明天再看看这部分
+	// document.getElementById("tovault").click(); /* 新功能： 自动回收 */
 	// 话说直接给指定id的按钮绑一个超原始的事件好尴尬啊...
 };
 a()/* 为使浏览器不返回true，所有流程都会塞进方法里 */
@@ -54,4 +55,4 @@ window.close()
 // 根据文档所述，非脚本打开的页面无法自动关掉
 // 因此手动关掉即可
 
-
+javascript:a=function(){checkAll(invent);document.getElementById("storefood").click()};a()
