@@ -1,5 +1,5 @@
-javascript:a=function(){for(a=0;a<28;a++){x=document.getElementsByName("v"+a)[0].options.length;if(x>2){document.getElementsByName("v"+a)[0].options[x-1].selected=false;document.getElementsByName("v"+a)[0].options[1].selected=true;}}};a()
-javascript:a=function(){for(a=0;a<28;a++){document.getElementsByName("v"+a)[0].options[document.getElementsByName("v"+a)[0].options.length-1].selected=false;document.getElementsByName("v"+a)[0].options[0].selected=true;}};a() // 另一个删掉了部分判定逻辑只改数量大于2的版本，该版本的出现原因我想关于这个文件的上一次commit信息里有写.
+javascript:a=function(){checkAll(invent);for(a=0;a<28;a++){x=document.getElementsByName("v"+a)[0].options.length;if(x>2){document.getElementsByName("v"+a)[0].options[x-1].selected=false;document.getElementsByName("v"+a)[0].options[1].selected=true;}}};a()
+javascript:a=function(){checkAll(invent);for(a=0;a<28;a++){document.getElementsByName("v"+a)[0].options[document.getElementsByName("v"+a)[0].options.length-1].selected=false;document.getElementsByName("v"+a)[0].options[0].selected=true;}};a() // 另一个删掉了部分判定逻辑只改数量大于2的版本，该版本的出现原因我想关于这个文件的上一次commit信息里有写.
 
 /*
 温习旧知识
@@ -9,6 +9,7 @@ javascript:a=function(){for(a=0;a<28;a++){document.getElementsByName("v"+a)[0].o
 条件语句的例子if(1==2){a=0}else{if(1==3){a=0}else{a=0}}
 */
 javascript: a = function() {
+    checkAll(invent); // 更新: 自动全选
     for (a = 0; a < 28; a++) {
         x = document.getElementsByName("v" + a)[0].options.length;/* 获取总数 */
         if (x > 2) {
