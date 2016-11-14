@@ -9,14 +9,14 @@ javascript:a=function(){for(a=0;a<28;a++){document.getElementsByName("v"+a)[0].o
 条件语句的例子if(1==2){a=0}else{if(1==3){a=0}else{a=0}}
 */
 javascript: a = function() {
-    for (a = 0; a < 28; a++) {
-        x = document.getElementsByName("v" + a)[0].options.length;/* 获取总数 */
-        if (x > 2) {
-            document.getElementsByName("v" + a)[0].options[x - 1].selected = false;/* 清空默认选项 */
-            document.getElementsByName("v" + a)[0].options[1].selected = true;/* 选中2 */
-        }
-    }
-    checkAll(invent); // 扔前面会出bug?
+	for (a = 0; a < 28; a++) {
+		x = document.getElementsByName("v" + a)[0].options.length;/* 获取总数 */
+		if (x > 2) {
+			document.getElementsByName("v" + a)[0].options[x - 1].selected = false;/* 清空默认选项 */
+			document.getElementsByName("v" + a)[0].options[1].selected = true;/* 选中2 */
+		}
+	}
+	checkAll(invent); // 扔前面会出bug?
 	document.getElementById("tovault").click(); /* 新功能： 自动回收 */
 	// 话说直接给指定id的按钮绑一个超原始的事件好尴尬啊...
 };
