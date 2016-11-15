@@ -69,7 +69,7 @@ for (a = 0; a < 28; a++) { // 背包栏位共28格，从0开始
 document.getElementById("tovault").click(); // 点击tovault按钮
 
 === 重新实现sotrefood按钮并修复自带按钮的bug
-javascript:a=funciton(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true}}document.getElementById("storefood").click()};a()
+javascript:a=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true}}document.getElementById("storefood").click()};a()
 	
 for (a = 0; a < 28; a++) { // 背包栏位共28格，从0开始
 	if(invent["i"+a]){ // 检测栏位存在性
