@@ -55,4 +55,17 @@ window.close()
 // 根据文档所述，非脚本打开的页面无法自动关掉
 // 因此手动关掉即可
 
+=== 根据页面自带的api重写选1的脚本
+
+for (a = 0; a < 28; a++) { // 背包栏位共28格，从0开始
+	if(invent["i"+a]){ // 检测栏位存在性
+		invent["a"+a].checked = true; // 逐一选中
+		invent["v"+a].options[self.length-2].selected = false; // 为啥self.lwngth要-2呢。。。
+		invent["v"+a].options[0].selected = true; // 总是选择1
+	}
+}
+
+document.getElementById("tovault").click(); // 点击tovault按钮
+
+
 javascript:a=function(){checkAll(invent);document.getElementById("storefood").click()};a()
