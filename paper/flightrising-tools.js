@@ -27,18 +27,19 @@ a()/* 为使浏览器不返回true，所有流程都会塞进方法里 */
 
 === 自动点bonding
 
-javascript:a=function(){x=document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;if(x){x();if(!window.z){window.z=1;exit}};window.open(document.getElementById("dragbuttons").getElementsByTagName("a")[1].href);window.close()};a()
+javascript:a=function(){x=document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;if(x){if(!window.z){x();window.z=1;exit}};window.location.href=document.getElementById("dragbuttons").getElementsByTagName("a")[1].href};a()
 
 x = document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;
 // loginbar的同名class有一大堆，估计将来的整站重写会改掉这个入口
 
 if(x){
-	x();
+	// x();
 	// alert("Please check the progress");
 	// 实验特性: 加个alert 
 	// 已废弃,因为alert之后整个页面都停住了
 	
 	if(!window.z){
+		x();
 		window.z = 1;
 		exit;
 		// 第一次过去新增一个 window.z
@@ -49,11 +50,12 @@ if(x){
 // 顺带如果hoard那边的具体事件绑定也能找到的话那么自动归类的操作也可以全自动化了=w=
 // update: 执行前加个判断，已经bond过的会自动跳过了
 
-window.open(document.getElementById("dragbuttons").getElementsByTagName("a")[1].href); // 自动点开下一页
+window.location.href=document.getElementById("dragbuttons").getElementsByTagName("a")[1].href; // 自动点开下一页
 
-window.close()
+// window.close()
 // 根据文档所述，非脚本打开的页面无法自动关掉
 // 因此手动关掉即可
+// 编辑：改成了直接跳转
 
 === 根据页面自带的api重写选1的脚本
 javascript:a=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true;invent["v"+a].options[self.length-2].selected=false;invent["v"+a].options[0].selected=true}}document.getElementById("tovault").click()};a()
@@ -78,4 +80,14 @@ for (a = 0; a < 28; a++) { // 背包栏位共28格，从0开始
 }
 
 document.getElementById("storefood").click()
+
+=== 总的来说目前书签栏放4个按钮
+bond
+javascript:a=function(){x=document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;if(x){if(!window.z){x();window.z=1;exit}};window.location.href=document.getElementById("dragbuttons").getElementsByTagName("a")[1].href};a()
+fr1
+javascript:a=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true;invent["v"+a].options[self.length-2].selected=false;invent["v"+a].options[0].selected=true}}document.getElementById("tovault").click()};a()
+tovault
+javascript:a=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true}}document.getElementById("tovault").click()};a()
+storefood
+javascript:a=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true}}document.getElementById("storefood").click()};a()
 
