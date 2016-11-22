@@ -58,16 +58,31 @@ window.location.href=document.getElementById("dragbuttons").getElementsByTagName
 // 编辑：改成了直接跳转
 
 === 根据页面自带的api重写选1的脚本
-javascript:a=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true;invent["v"+a].options[self.length-2].selected=false;invent["v"+a].options[0].selected=true}}document.getElementById("tovault").click()};a()
+javascript:a=function(){a=(invent.length-2)/3;for(b=0;b<a;b++){invent["i"+b].checked=true;x=invent["v"+b];x.options[x.options.length-1].selected=false;x.options[0].selected=true}document.getElementById("tovault").click()};a()
 
+/* Old version that have so many faults must be destoryed
 for (a = 0; a < 28; a++) { // 背包栏位共28格，从0开始
 	if(invent["i"+a]){ // 检测栏位存在性
 		invent["a"+a].checked = true; // 逐一选中
-		invent["v"+a].options[self.length-2].selected = false; // 为啥self.lwngth要-2呢。。。
+		// invent["v"+a].options[self.length-2].selected = false; // 为啥self.lwngth要-2呢。。。
+		// 上面那行完全是乱写！因为下一行已经完成了逻辑所以一直没发现！
 		invent["v"+a].options[0].selected = true; // 总是选择1
 	}
 }
 
+document.getElementById("tovault").click(); // 点击tovault按钮
+*/
+
+a = ( invent.length - 2 ) / 3;
+	// invent变量末尾2个项标记当前分类和页数，
+	// 其他部分每三个一组存储了每一个物品栏位的打勾框、选择数、唯一的全局id（稍后会提交到远端负责识别物品）
+	// 此处仅计算出当前页背包的物品数目，最大 4x7=28
+for (b = 0; b < a; b++) {
+	invent["i"+ b ].checked = true; // 打勾
+	x = invent["v"+ b ]; // 定义x为工作下拉框
+	x.options[x.options.length - 1].selected = false; // 兼容性考虑
+	x.options[0].selected = true; // 沿用上一版本的内容
+}
 document.getElementById("tovault").click(); // 点击tovault按钮
 
 === 重新实现sotrefood按钮并修复自带按钮的bug
@@ -85,7 +100,7 @@ document.getElementById("storefood").click()
 bond
 javascript:a=function(){x=document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;if(x){if(!window.z){x();window.z=1;exit}};window.location.href=document.getElementById("dragbuttons").getElementsByTagName("a")[1].href};a()
 fr1
-javascript:a=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true;invent["v"+a].options[self.length-2].selected=false;invent["v"+a].options[0].selected=true}}document.getElementById("tovault").click()};a()
+javascript:a=function(){a=(invent.length-2)/3;for(b=0;b<a;b++){invent["i"+b].checked=true;x=invent["v"+b];x.options[x.options.length-1].selected=false;x.options[0].selected=true}document.getElementById("tovault").click()};a()
 tovault
 javascript:a=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true}}document.getElementById("tovault").click()};a()
 storefood
