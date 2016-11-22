@@ -27,7 +27,7 @@ a()/* 为使浏览器不返回true，所有流程都会塞进方法里 */
 
 === 自动点bonding
 
-javascript:a=function(){x=document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;if(x){if(!window.z){x();window.z=1;exit}};window.location.href=document.getElementById("dragbuttons").getElementsByTagName("a")[1].href};a()
+javascript:f=function(){x=document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;if(x){if(!window.z){x();window.z=1;exit}};window.location.href=document.getElementById("dragbuttons").getElementsByTagName("a")[1].href};f()
 
 x = document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;
 // loginbar的同名class有一大堆，估计将来的整站重写会改掉这个入口
@@ -58,7 +58,7 @@ window.location.href=document.getElementById("dragbuttons").getElementsByTagName
 // 编辑：改成了直接跳转
 
 === 根据页面自带的api重写选1的脚本
-javascript:a=function(){a=(invent.length-2)/3;for(b=0;b<a;b++){invent["i"+b].checked=true;x=invent["v"+b];x.options[x.options.length-1].selected=false;x.options[0].selected=true}document.getElementById("tovault").click()};a()
+javascript:f=function(){a=(invent.length-3)/4;for(b=0;b<a;b++){invent["a"+b].checked=true;x=invent["v"+b];x.options[x.options.length-1].selected=false;x.options[0].selected=true}document.getElementById("tovault").click()};f()
 
 /* Old version that have so many faults must be destoryed
 for (a = 0; a < 28; a++) { // 背包栏位共28格，从0开始
@@ -73,12 +73,14 @@ for (a = 0; a < 28; a++) { // 背包栏位共28格，从0开始
 document.getElementById("tovault").click(); // 点击tovault按钮
 */
 
-a = ( invent.length - 2 ) / 3;
+// a = ( invent.length - 2 ) / 3;
 	// invent变量末尾2个项标记当前分类和页数，
 	// 其他部分每三个一组存储了每一个物品栏位的打勾框、选择数、唯一的全局id（稍后会提交到远端负责识别物品）
 	// 此处仅计算出当前页背包的物品数目，最大 4x7=28
+a = ( invent.length - 3 ) / 4;
+// 食物类的略奇葩，有一项是存储食物类型的，然后末尾
 for (b = 0; b < a; b++) {
-	invent["i"+ b ].checked = true; // 打勾
+	invent["a"+ b ].checked = true; // 打勾
 	x = invent["v"+ b ]; // 定义x为工作下拉框
 	x.options[x.options.length - 1].selected = false; // 兼容性考虑
 	x.options[0].selected = true; // 沿用上一版本的内容
@@ -86,7 +88,7 @@ for (b = 0; b < a; b++) {
 document.getElementById("tovault").click(); // 点击tovault按钮
 
 === 重新实现sotrefood按钮并修复自带按钮的bug
-javascript:a=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true}}document.getElementById("storefood").click()};a()
+javascript:f=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true}}document.getElementById("storefood").click()};f()
 	
 for (a = 0; a < 28; a++) { // 背包栏位共28格，从0开始
 	if(invent["i"+a]){ // 检测栏位存在性
@@ -98,11 +100,11 @@ document.getElementById("storefood").click()
 
 === 总的来说目前书签栏放4个按钮
 bond
-javascript:a=function(){x=document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;if(x){if(!window.z){x();window.z=1;exit}};window.location.href=document.getElementById("dragbuttons").getElementsByTagName("a")[1].href};a()
+javascript:f=function(){x=document.getElementsByClassName("loginbar")[16].getElementsByTagName("img")[0].onclick;if(x){if(!window.z){x();window.z=1;exit}};window.location.href=document.getElementById("dragbuttons").getElementsByTagName("a")[1].href};f()
 fr1
-javascript:a=function(){a=(invent.length-2)/3;for(b=0;b<a;b++){invent["i"+b].checked=true;x=invent["v"+b];x.options[x.options.length-1].selected=false;x.options[0].selected=true}document.getElementById("tovault").click()};a()
+javascript:f=function(){a=(invent.length-3)/4;for(b=0;b<a;b++){invent["a"+b].checked=true;x=invent["v"+b];x.options[x.options.length-1].selected=false;x.options[0].selected=true}document.getElementById("tovault").click()};f()
 tovault
-javascript:a=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true}}document.getElementById("tovault").click()};a()
+javascript:f=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true}}document.getElementById("tovault").click()};f()
 storefood
-javascript:a=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true}}document.getElementById("storefood").click()};a()
+javascript:f=function(){for(a=0;a<28;a++){if(invent["i"+a]){invent["a"+a].checked=true}}document.getElementById("storefood").click()};f()
 
