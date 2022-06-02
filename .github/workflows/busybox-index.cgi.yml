@@ -20,7 +20,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Add MSBuild to PATH
-        uses: microsoft/setup-msbuild@v1.0.2
+        uses: microsoft/setup-msbuild@v1.1
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -31,6 +31,6 @@ jobs:
         run: |
           gcc -o index.cgi httpd_indexcgi.c strnatcmp.c
       - name: Upload artifact
-        uses: actions/upload-artifact@v3.0.0
+        uses: actions/upload-artifact@v3.1.0
         with:
           path: index.cgi
