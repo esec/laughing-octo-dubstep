@@ -15,7 +15,7 @@ jobs:
     runs-on: windows-latest
     defaults:
       run:
-        shell: C:\tools\cygwin\bin\bash.exe --login -o igncr {0}
+        shell: C:\cygwin\bin\bash.exe '{0}'
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
