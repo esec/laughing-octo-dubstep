@@ -1,0 +1,36 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: Java CI with Gradle
+
+on:
+ workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: retrive file from cowtransfer
+    - uses: wget 'https://gd-cowtransfer.cdn.cowtransfer.com/cowtransfer/cowtransfer/75689/45a3cf8bcffd4f3bb78d0e67e5a665a0.zip?response-content-disposition=attachment%3B%20filename%3DMekanism-764947ac0e0e17b82db55509a0e6013c9e5fb26f.zip%3Bfilename*%3Dutf-8%27%27Mekanism-764947ac0e0e17b82db55509a0e6013c9e5fb26f.zip&auth_key=1660714641-9db00f789f6843bc870520f01492f58c-0-077aa3c43658c9aa18ca629b5408673e&user_id=&biz_type=1&channel_id=COW_CN_WECHAT&business_id=COW_TRANSFER' -O i && unzip i && mv Mekanism-764947ac0e0e17b82db55509a0e6013c9e5fb26f/* . && rm -r Mekanism-764947ac0e0e17b82db55509a0e6013c9e5fb26f i
+    - name: Set up JDK 17 as 1.19.x
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    - name: Build with Gradle
+      uses: gradle/gradle-build-action@v2.2.2
+      with:
+        arguments: build
+    - name: Upload artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          path: ${{ github.workspace }}
