@@ -12,13 +12,14 @@ for (i = 0; i < x.length; i++) {
 console.log(biglog);
 
 javascript: import("https://code.jquery.com/jquery-latest.min.js").then(() => {
-  a = prompt();
-  x = document.getElementsByTagName("div");
-  xp = RegExp(a + ".*");
-  for (i = 0; i < x.length; i++) {
-    b = x[i].getAttribute("data-name");
-    if (xp.exec(b)) {
-      $(x[i]).delay(100).fadeOut().fadeIn("slow");
+  navigator.clipboard.readText().then((clipText) => {
+    x = document.getElementsByTagName("div");
+    xp = RegExp(clipText + ".*");
+    for (i = 0; i < x.length; i++) {
+      b = x[i].getAttribute("data-name");
+      if (xp.exec(b)) {
+        $(x[i]).delay(100).fadeOut().fadeIn("slow");
+      }
     }
-  }
+  });
 });
