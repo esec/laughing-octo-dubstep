@@ -1,0 +1,53 @@
+<head>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        img {
+            /* width: 200px; */
+            height: 200px;
+            object-fit: contain;
+            float: left
+        }
+
+        p {
+            color: white;
+        }
+    </style>
+    <meta charset="UTF8" />
+</head>
+
+<body>
+    <button onclick="load()">load</button>
+    <input id="prefix" size="90"
+        value="https://awmawm.s3.ap-northeast-1.wasabisys.com/YJNN/No.3%20-%20%E5%92%8C%E6%B3%89%E7%BA%B1%E9%9B%BE/Image_21.jpg" />
+    <br />
+    <script>
+        function load() {
+            orbit = window.performance.now()
+            rootnode = document.getElementById('fig1')
+            rootnode.replaceChildren();
+            lasturl = document.getElementById('prefix').value
+            digis = lasturl.substr(lasturl.length - 6, 2)
+            digis = parseInt(digis)
+            newhead = lasturl.substr(0, lasturl.length - 6)
+            newtail = lasturl.slice(-4)
+            // console.log(typeof digis, digis)
+
+            for (i = 1; i < digis; i++) {
+                ni = i
+                if (i < 10) ni = "0" + i
+                nweimg = newhead + ni + newtail
+                j = document.createElement('img');
+                j.src = nweimg
+                rootnode.appendChild(j)
+            }
+            console.log(window.performance.now() - orbit, "ms")
+        }
+
+
+
+
+    </script>
+    <div id="fig1"></div>

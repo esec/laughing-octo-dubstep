@@ -1,0 +1,137 @@
+<head>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        img {
+            /* width: 200px; */
+            height: 200px;
+            object-fit: contain;
+            float: left
+        }
+
+        p {
+            color: white;
+        }
+    </style>
+    <meta charset="UTF8" />
+</head>
+
+<body>
+    <script src="dif.js"></script>
+    <script src="dif2x.js"></script>
+    <script src="dif3.js"></script>
+    <script src="dif4.js"></script>
+    <button onclick="load()">load</button>
+    <input id="prefix" value="11" size="2" />
+    <input id="end" disabled size="2" />
+    <button onclick="adjust(1)">+</button>
+    <button onclick="adjust(-1)">-</button>
+    <br />
+    <script>
+        cachekey = []
+        for (a in dic) cachekey.push(a)
+        document.getElementById('end').value = cachekey.length
+        function load() {
+            orbit = window.performance.now()
+            rootnode = document.getElementById('fig1')
+            rootnode.replaceChildren();
+            prefix = document.getElementById('prefix').value
+            a = cachekey[prefix]
+            txt1 = a.substring(a.lastIndexOf('\\') + 1);
+            appendall(rootnode, a, txt1)
+            deeper = dic[a]
+            repo2 = []
+            nodup = []
+            for (b in deeper) {
+                txt2idx = deeper[b][0].lastIndexOf('\\') + 1
+                txt2cache = deeper[b][0].substring(txt2idx);
+                repo2.push(txt2cache)
+                txt2cache = addtime(txt2cache)
+                txt2cache += "<br />";
+                txt2cache += deeper[b][1];
+                appendall(rootnode, deeper[b][0], txt2cache)
+            }
+            for (b in repo2) {
+                b = repo2[b]
+                // console.log(b)
+                b = pickpic4(b)
+                // console.log(b)
+                if (b == 1) continue
+                donotrun = 0
+                for (i = 0; i < nodup.length; i++)
+                    if (nodup[i] == b) donotrun = 1
+                if (donotrun == 1) continue
+                nodup.push(b)
+                console.log(b, nodup[0])
+                isrc = "E:\\d\\" + b;
+                txt3cache = addtime(b)
+                txt3cache += "<br /><pre>";
+                txt3cache += JSON.stringify(dic2[b], null, 2)
+                txt3cache += "</pre>"
+
+                appendall(rootnode, isrc, txt3cache)
+            }
+
+            console.log(window.performance.now() - orbit, "ms")
+        }
+
+        function addtime(title) {
+            for (i = 0; i < dic3.length; i++) {
+                if (dic3[i].endsWith(title)) {
+                    title = dic3[i].trim()
+                    return title
+                }
+            }
+            return title
+        }
+
+        function appendall(node, imgsrc, html) {
+            i = document.createElement('img');
+            i.src = imgsrc
+            p = document.createElement('p');
+            p.innerHTML = html
+            node.appendChild(i)
+            node.appendChild(p)
+        }
+
+        function pickpic4(fn) {
+            fn2 = []
+            fn2.push(fn)
+            // console.log(dic2[fn],fn)
+            if (!dic2[fn]) return 1
+            for (i in dic2[fn]) {
+                fn2.push(dic2[fn][i][0])
+            }
+            for (e in dic4) {
+                for (a in fn2) {
+                    if (dic4[e].endsWith(fn2[a])) {
+                        // console.log(fn2[a])
+                        return fn2[a]
+                    }
+
+                }
+            }
+            return 1
+        }
+
+        function adjust(n) {
+            cell = document.getElementById("prefix")
+            cell.value = n + parseInt(cell.value)
+            load()
+        }
+
+        document.body.addEventListener("keydown", (event) => {
+            if (event.isComposing || event.key === "j") {
+                adjust(1)
+            }
+            if (event.isComposing || event.key === "k") {
+                adjust(-1)
+            }
+            // do something
+        });
+
+
+    </script>
+    <div id="fig1"></div>
