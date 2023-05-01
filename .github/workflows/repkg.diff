@@ -1,0 +1,72 @@
+diff --git a/.github/workflows/msbuild.yml b/.github/workflows/msbuild.yml
+new file mode 100644
+index 0000000..2242164
+--- /dev/null
++++ b/.github/workflows/msbuild.yml
+@@ -0,0 +1,42 @@
++name: MSBuild
++
++on:
++  push:
++    branches: [ master ]
++
++env:
++  # Path to the solution file relative to the root of the project.
++  SOLUTION_FILE_PATH: .
++
++  # Configuration type to build.
++  # You can convert this to a build matrix if you need coverage of multiple configuration types.
++  # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
++  BUILD_CONFIGURATION: Release
++
++permissions:
++  contents: read
++
++jobs:
++  build:
++    runs-on: windows-latest
++
++    steps:
++    - uses: actions/checkout@v3
++
++    - name: Add MSBuild to PATH
++      uses: microsoft/setup-msbuild@v1.0.2
++
++    - name: Restore NuGet packages
++      working-directory: ${{env.GITHUB_WORKSPACE}}
++      run: nuget restore ${{env.SOLUTION_FILE_PATH}}
++
++    - name: Build
++      working-directory: ${{env.GITHUB_WORKSPACE}}
++      # Add additional options to the MSBuild command line here (like platform or verbosity level).
++      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
++      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
++    
++    - name: Upload artifact
++      uses: actions/upload-artifact@v3.0.0
++      with:
++        path: repkg/bin/Release/net472
+diff --git a/RePKG.sln b/RePKG.sln
+index 788a73a..32243a6 100644
+--- a/RePKG.sln
++++ b/RePKG.sln
+@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28307.271
+ MinimumVisualStudioVersion = 10.0.40219.1
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RePKG", "RePKG\RePKG.csproj", "{A014E252-FB25-4388-B17A-8DD1956B2093}"
+ EndProject
+-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RePKG.Tests", "RePKG.Tests\RePKG.Tests.csproj", "{00DDEB73-18AF-463B-BEDC-7BA3DCBFA223}"
+-EndProject
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RePKG.Core", "RePKG.Core\RePKG.Core.csproj", "{43CFFA8A-BDB4-4A09-9D07-95FA09CCCEC9}"
+ EndProject
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RePKG.Application", "RePKG.Application\RePKG.Application.csproj", "{DDFFD8D1-3961-4F1B-B778-1CAC5622AA19}"
+@@ -21,10 +19,6 @@ Global
+ 		{A014E252-FB25-4388-B17A-8DD1956B2093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+ 		{A014E252-FB25-4388-B17A-8DD1956B2093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+ 		{A014E252-FB25-4388-B17A-8DD1956B2093}.Release|Any CPU.Build.0 = Release|Any CPU
+-		{00DDEB73-18AF-463B-BEDC-7BA3DCBFA223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+-		{00DDEB73-18AF-463B-BEDC-7BA3DCBFA223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+-		{00DDEB73-18AF-463B-BEDC-7BA3DCBFA223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+-		{00DDEB73-18AF-463B-BEDC-7BA3DCBFA223}.Release|Any CPU.Build.0 = Release|Any CPU
+ 		{43CFFA8A-BDB4-4A09-9D07-95FA09CCCEC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+ 		{43CFFA8A-BDB4-4A09-9D07-95FA09CCCEC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+ 		{43CFFA8A-BDB4-4A09-9D07-95FA09CCCEC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
