@@ -1,13 +1,13 @@
 c0k=123
 
-var getFullReport = function(date, url, total, offset, limit, fields, advance, done, csv) {
+var getFullReport = function (date, url, total, offset, limit, fields, advance, done, csv) {
     if (csv === undefined) {
         csv = '';
     }
     var path = date + '/' + limit + '/' + offset;
     $.getJSON(url + path + '/?json', function (rawData) {
-        if (offset == 0) {
-            rawData['data'] = c0k;
+        if (offset == 4000) {
+            rawData = c1k;
         }
         processData(rawData['data'], fields, function (processedData, csvChunk) {
             offset += processedData.length;
